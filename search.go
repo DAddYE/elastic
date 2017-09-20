@@ -403,9 +403,9 @@ func (s *SearchService) DoC(ctx context.Context) (*SearchResult, error) {
 
 // ShardStats holds statistics that counts the total/successful/failed shards
 type ShardStats struct {
-    Total      int
-    Successful int
-    Failed     int
+    Total      int `json:"total"`      // count of total shards
+    Successful int `json:"successful"` // count of successful shards
+    Failed     int `json:"failed"`     // count of failed shards
 }
 
 // SearchResult is the result of a search in Elasticsearch.
@@ -418,7 +418,7 @@ type SearchResult struct {
 	Aggregations Aggregations  `json:"aggregations"`    // results from aggregations
 	TimedOut     bool          `json:"timed_out"`       // true if the search timed out
 	Error        string        `json:"error,omitempty"` // used in MultiSearch only
-	ShardStats   ShardStats    `json:"_shard_stats"`    // shard counts for total/successful/failed
+	Shards       ShardStats    `json:"_shards"`         // shard counts for total/successful/failed
 }
 
 // TotalHits is a convenience function to return the number of hits for

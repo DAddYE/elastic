@@ -225,8 +225,8 @@ func (s *ScrollService) GetNextPageC(ctx context.Context) (*SearchResult, error)
 
 	// Determine last page
 	if searchResult == nil || searchResult.Hits == nil || len(searchResult.Hits.Hits) == 0 || searchResult.Hits.TotalHits == 0 {
-		return nil, EOS
-	}
+        	return searchResult, EOS
+    	}
 
 	return searchResult, nil
 }
